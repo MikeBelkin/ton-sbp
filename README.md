@@ -1,7 +1,7 @@
 # ton-sbp
 *Запрос payload для ранее зарегистрированного QR-кода СБП
 
-TON SBP - alfa version
+TON SBP QR - alfa version
 
 Payments via blockchain TON (The Open Network, Toncoin) for SBP QR *(Система быстрых платежей - СБП, оплата услуг и покупок по QR коду)
 
@@ -11,7 +11,8 @@ add merchant https://telepay.cash/
 go to https://sbp.nspk.ru
 get keys
 send payment
-todo
+
+ToDo
   write code
 links
 https://telepay.cash/
