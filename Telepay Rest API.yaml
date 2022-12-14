@@ -1,0 +1,1308 @@
+openapi: 3.0.3
+info:
+  title: Telepay Rest API
+  version: 1.1.0
+  description: TelePay is a crypto-payments gateway supporting TON, HIVE and HBD tokens,
+    with more assets coming up in the roadmap.
+paths:
+  /rest/activateWebhook/{id}:
+    post:
+      operationId: activateWebhook_create
+      description: Activate webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Webhook
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: ''
+    patch:
+      operationId: activateWebhook_partial_update
+      description: Activate webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Webhook
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: ''
+  /rest/cancelInvoice/{number}:
+    post:
+      operationId: cancelInvoice_create
+      description: Cancel invoice
+      parameters:
+      - in: path
+        name: number
+        schema:
+          type: string
+        required: true
+      tags:
+      - Invoices
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ''
+    put:
+      operationId: cancelInvoice_update
+      description: Cancel invoice
+      parameters:
+      - in: path
+        name: number
+        schema:
+          type: string
+        required: true
+      tags:
+      - Invoices
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ''
+  /rest/createInvoice:
+    post:
+      operationId: createInvoice_create
+      description: Create invoices
+      tags:
+      - Invoices
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InvoiceInput'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InvoiceInput'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ''
+  /rest/createWebhook:
+    post:
+      operationId: createWebhook_create
+      description: Create webhook
+      tags:
+      - Webhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: ''
+  /rest/deactivateWebhook/{id}:
+    post:
+      operationId: deactivateWebhook_create
+      description: Deactivate webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Webhook
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: ''
+    patch:
+      operationId: deactivateWebhook_partial_update
+      description: Deactivate webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Webhook
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: ''
+  /rest/deleteInvoice/{number}:
+    post:
+      operationId: deleteInvoice_create
+      description: Delete invoice
+      parameters:
+      - in: path
+        name: number
+        schema:
+          type: string
+        required: true
+      tags:
+      - Invoices
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+          description: ''
+    delete:
+      operationId: deleteInvoice_destroy
+      description: Delete invoice
+      parameters:
+      - in: path
+        name: number
+        schema:
+          type: string
+        required: true
+      tags:
+      - Invoices
+      security:
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /rest/deleteWebhook/{id}:
+    post:
+      operationId: deleteWebhook_create
+      description: Delete webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Webhook
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+          description: ''
+    delete:
+      operationId: deleteWebhook_destroy
+      description: Delete webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Webhook
+      security:
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /rest/getAsset:
+    post:
+      operationId: getAsset_create
+      description: Get asset
+      tags:
+      - Me
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AssetInput'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AssetInput'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+          description: ''
+  /rest/getAssets:
+    get:
+      operationId: getAssets_retrieve
+      description: Get assets
+      tags:
+      - Me
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assets'
+          description: ''
+  /rest/getBalance:
+    get:
+      operationId: getBalance_retrieve
+      description: Get merchant balance
+      tags:
+      - Me
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMerchantBalance'
+          description: ''
+    post:
+      operationId: getBalance_create
+      description: Get merchant balance
+      tags:
+      - Me
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WalletInput'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WalletInput'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMerchantBalance'
+          description: ''
+  /rest/getInvoice/{number}:
+    get:
+      operationId: getInvoice_retrieve
+      description: Get invoice
+      parameters:
+      - in: path
+        name: number
+        schema:
+          type: string
+        required: true
+      tags:
+      - Invoices
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ''
+  /rest/getInvoices:
+    get:
+      operationId: getInvoices_retrieve
+      description: Get invoices
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: integer
+        description: pagination
+      tags:
+      - Invoices
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoices'
+          description: ''
+  /rest/getMe:
+    get:
+      operationId: getMe_retrieve
+      description: Get merchant data
+      tags:
+      - Me
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Me'
+          description: ''
+  /rest/getWebhook/{id}:
+    get:
+      operationId: getWebhook_retrieve
+      description: Get webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Webhook
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: ''
+  /rest/getWebhooks:
+    get:
+      operationId: getWebhooks_retrieve
+      description: Get webhooks
+      tags:
+      - Webhook
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: ''
+  /rest/getWithdrawFee:
+    post:
+      operationId: getWithdrawFee_create
+      description: Get withdraw fee
+      tags:
+      - Withdraw
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WithdrawalInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WithdrawalInput'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WithdrawalInput'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WithdrawFee'
+          description: ''
+  /rest/getWithdrawMinimum:
+    post:
+      operationId: getWithdrawMinimum_create
+      description: Get withdraw minimum
+      tags:
+      - Withdraw
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AssetInput'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AssetInput'
+        required: true
+      security:
+      - tokenAuth: []
+      deprecated: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WithdrawMinimum'
+          description: ''
+  /rest/schema/:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /rest/transfer:
+    post:
+      operationId: transfer_create
+      description: Transfer funds internally (off-chain) to another TelePay account
+      tags:
+      - Transfer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TransferInput'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TransferInput'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+          description: ''
+  /rest/updateWebhook/{id}:
+    post:
+      operationId: updateWebhook_create
+      description: Update webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Webhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: ''
+    put:
+      operationId: updateWebhook_update
+      description: Update webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Webhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: ''
+  /rest/withdraw:
+    post:
+      operationId: withdraw_create
+      description: Withdraw funds
+      tags:
+      - Withdraw
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WithdrawalInput'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WithdrawalInput'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WithdrawalInput'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Withdrawal'
+          description: ''
+components:
+  schemas:
+    Asset:
+      type: object
+      properties:
+        asset:
+          type: string
+          readOnly: true
+        blockchain:
+          type: string
+          maxLength: 20
+        usd_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,18})?$
+          nullable: true
+        url:
+          type: string
+          format: uri
+          maxLength: 200
+        networks:
+          type: object
+          additionalProperties: {}
+        coingecko_id:
+          type: string
+          maxLength: 255
+        deposit_minimum:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,18})?$
+        deposit_enabled:
+          type: boolean
+        withdrawal_minimum:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,18})?$
+        withdrawal_enabled:
+          type: boolean
+        withdrawal_fee_percentage:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,2}(?:\.\d{0,5})?$
+        withdrawal_fee_fixed:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,2}(?:\.\d{0,18})?$
+      required:
+      - asset
+      - blockchain
+      - coingecko_id
+      - url
+    AssetInput:
+      type: object
+      properties:
+        asset:
+          type: string
+          maxLength: 20
+        blockchain:
+          type: string
+          maxLength: 20
+        network:
+          type: string
+          nullable: true
+      required:
+      - asset
+      - blockchain
+    Assets:
+      type: object
+      properties:
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+      required:
+      - assets
+    BlankEnum:
+      enum:
+      - ''
+    GetMeMerchant:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        logo_url:
+          type: string
+          format: uri
+        logo_thumbnail_url:
+          type: string
+          format: uri
+        verified:
+          type: boolean
+        username:
+          type: string
+        is_active:
+          type: boolean
+        public_profile:
+          type: string
+          format: uri
+        owner:
+          $ref: '#/components/schemas/MerchantOwner'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - created_at
+      - is_active
+      - logo_thumbnail_url
+      - logo_url
+      - name
+      - owner
+      - public_profile
+      - updated_at
+      - url
+      - username
+      - verified
+    GetMerchantBalance:
+      type: object
+      properties:
+        wallets:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantAssets'
+      required:
+      - wallets
+    Invoice:
+      type: object
+      properties:
+        number:
+          type: string
+          maxLength: 10
+        asset:
+          type: string
+          maxLength: 20
+        blockchain:
+          type: string
+          maxLength: 20
+        network:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/NetworkEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        status:
+          $ref: '#/components/schemas/InvoiceStatusEnum'
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,18})?$
+        amount_remaining:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,18})?$
+        amount_real:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,18})?$
+        description:
+          type: string
+          nullable: true
+          maxLength: 255
+        metadata:
+          type: object
+          additionalProperties: {}
+          nullable: true
+        on_chain_allowed:
+          type: boolean
+        off_chain_allowed:
+          type: boolean
+        checkout_url:
+          type: string
+          readOnly: true
+        onchain_url:
+          type: string
+          readOnly: true
+        success_url:
+          type: string
+          nullable: true
+        cancel_url:
+          type: string
+          nullable: true
+        expired_url:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 200
+        explorer_url:
+          type: string
+          nullable: true
+        expires_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - amount
+      - asset
+      - blockchain
+      - checkout_url
+      - number
+      - onchain_url
+    InvoiceInput:
+      type: object
+      properties:
+        asset:
+          type: string
+          maxLength: 20
+        blockchain:
+          type: string
+          maxLength: 20
+        network:
+          type: string
+          nullable: true
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,18})?$
+        usd_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,18})?$
+          default: '0.000000000000000000'
+        description:
+          type: string
+          nullable: true
+          maxLength: 255
+        metadata:
+          type: object
+          additionalProperties: {}
+          nullable: true
+        expires_at:
+          type: integer
+          minimum: 1
+          nullable: true
+        success_url:
+          type: string
+          nullable: true
+        cancel_url:
+          type: string
+          nullable: true
+        expired_url:
+          type: string
+          nullable: true
+        on_chain_allowed:
+          type: boolean
+          default: true
+        off_chain_allowed:
+          type: boolean
+          default: true
+      required:
+      - amount
+      - asset
+      - blockchain
+    InvoiceStatusEnum:
+      enum:
+      - pending
+      - expired
+      - cancelled
+      - completed
+      type: string
+    Invoices:
+      type: object
+      properties:
+        invoices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      required:
+      - invoices
+      - pagination
+    Me:
+      type: object
+      properties:
+        version:
+          type: string
+        merchant:
+          $ref: '#/components/schemas/GetMeMerchant'
+      required:
+      - merchant
+      - version
+    MerchantAssets:
+      type: object
+      properties:
+        asset:
+          type: string
+        blockchain:
+          type: string
+        balance:
+          type: number
+          format: double
+        network:
+          type: string
+      required:
+      - asset
+      - balance
+      - blockchain
+      - network
+    MerchantOwner:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        username:
+          type: string
+      required:
+      - first_name
+      - last_name
+      - username
+    NetworkEnum:
+      enum:
+      - testnet
+      - mainnet
+      type: string
+    NullEnum:
+      enum:
+      - null
+    Pagination:
+      type: object
+      properties:
+        has_previous:
+          type: boolean
+        has_next:
+          type: boolean
+        page:
+          type: integer
+        pages_total:
+          type: integer
+        total:
+          type: integer
+      required:
+      - has_next
+      - has_previous
+      - page
+      - pages_total
+      - total
+    Success:
+      type: object
+      properties:
+        success:
+          type: string
+        message:
+          type: string
+      required:
+      - message
+      - success
+    TransferInput:
+      type: object
+      properties:
+        username:
+          type: string
+          maxLength: 255
+        asset:
+          type: string
+          maxLength: 20
+        blockchain:
+          type: string
+          maxLength: 20
+        network:
+          type: string
+          nullable: true
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,18})?$
+        message:
+          type: string
+          nullable: true
+          maxLength: 255
+      required:
+      - amount
+      - asset
+      - blockchain
+      - username
+    WalletInput:
+      type: object
+      properties:
+        asset:
+          type: string
+          maxLength: 20
+        blockchain:
+          type: string
+          maxLength: 20
+        network:
+          type: string
+          nullable: true
+      required:
+      - asset
+      - blockchain
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        url:
+          type: string
+        secret:
+          type: string
+          maxLength: 255
+        events:
+          type: object
+          additionalProperties: {}
+        active:
+          type: boolean
+      required:
+      - id
+      - secret
+      - url
+    WebhookInput:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          maxLength: 255
+        secret:
+          type: string
+          maxLength: 255
+        events:
+          type: object
+          additionalProperties: {}
+        active:
+          type: boolean
+          default: true
+      required:
+      - events
+      - secret
+      - url
+    WithdrawFee:
+      type: object
+      properties:
+        blockchain_fee:
+          type: number
+          format: double
+        processing_fee:
+          type: number
+          format: double
+        total:
+          type: number
+          format: double
+      required:
+      - blockchain_fee
+      - processing_fee
+      - total
+    WithdrawMinimum:
+      type: object
+      properties:
+        withdraw_minimum:
+          type: number
+          format: double
+      required:
+      - withdraw_minimum
+    Withdrawal:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/WithdrawalStatusEnum'
+        asset:
+          type: string
+          maxLength: 20
+        blockchain:
+          type: string
+          maxLength: 20
+        network:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/NetworkEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,18})?$
+        to_address:
+          type: string
+          maxLength: 255
+        blockchain_fee:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,18})?$
+          nullable: true
+        processing_fee:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,18})?$
+          nullable: true
+        explorer_url:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - amount
+      - asset
+      - blockchain
+      - to_address
+    WithdrawalInput:
+      type: object
+      properties:
+        to_address:
+          type: string
+          maxLength: 255
+        asset:
+          type: string
+          maxLength: 20
+        blockchain:
+          type: string
+          maxLength: 20
+        network:
+          type: string
+          nullable: true
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,18})?$
+      required:
+      - amount
+      - asset
+      - blockchain
+      - to_address
+    WithdrawalStatusEnum:
+      enum:
+      - pending
+      - auditing
+      - approved
+      - performing
+      - confirming
+      - failed
+      - completed
+      type: string
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
